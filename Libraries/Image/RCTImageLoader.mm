@@ -309,38 +309,8 @@ static UIImage *RCTResizeImageIfNeeded(UIImage *image,
   return image;
 }
 
-#pragma mark - RCTImageLoaderProtocol 2/3
-
-- (nullable RCTImageLoaderCancellationBlock)loadImageWithURLRequest:(NSURLRequest *)imageURLRequest
-                                                           callback:(RCTImageLoaderCompletionBlock)callback
-{
-    return [self loadImageWithURLRequest:imageURLRequest
-                                priority:RCTImageLoaderPriorityImmediate
-                                callback:callback];
-}
-
-- (nullable RCTImageLoaderCancellationBlock)loadImageWithURLRequest:(NSURLRequest *)imageURLRequest
-                                                           priority:(RCTImageLoaderPriority)priority
-                                                           callback:(RCTImageLoaderCompletionBlock)callback {
-    return [self loadImageWithURLRequest:imageURLRequest
-                                    size:CGSizeZero
-                                   scale:1
-                                 clipped:YES
-                              resizeMode:RCTResizeModeStretch
-                                priority:priority
-                           progressBlock:nil
-                        partialLoadBlock:nil
-                         completionBlock:callback];
-}
-
-- (nullable RCTImageLoaderCancellationBlock)loadImageWithURLRequest:(NSURLRequest *)imageURLRequest
-                                                               size:(CGSize)size
-                                                              scale:(CGFloat)scale
-                                                            clipped:(BOOL)clipped
-                                                         resizeMode:(RCTResizeMode)resizeMode
-                                                      progressBlock:(RCTImageLoaderProgressBlock)progressBlock
-                                                   partialLoadBlock:(RCTImageLoaderPartialLoadBlock)partialLoadBlock
-                                                    completionBlock:(RCTImageLoaderCompletionBlock)completionBlock
+- (RCTImageLoaderCancellationBlock) loadImageWithURLRequest:(NSURLRequest *)imageURLRequest
+                                                   callback:(RCTImageLoaderCompletionBlock)callback
 {
   return [self loadImageWithURLRequest:imageURLRequest
                                   size:CGSizeZero
@@ -352,16 +322,14 @@ static UIImage *RCTResizeImageIfNeeded(UIImage *image,
                        completionBlock:callback];
 }
 
-
-- (nullable RCTImageLoaderCancellationBlock)loadImageWithURLRequest:(NSURLRequest *)imageURLRequest
-                                                               size:(CGSize)size
-                                                              scale:(CGFloat)scale
-                                                            clipped:(BOOL)clipped
-                                                         resizeMode:(RCTResizeMode)resizeMode
-                                                           priority:(RCTImageLoaderPriority)priority
-                                                      progressBlock:(RCTImageLoaderProgressBlock)progressBlock
-                                                   partialLoadBlock:(RCTImageLoaderPartialLoadBlock)partialLoadBlock
-                                                    completionBlock:(RCTImageLoaderCompletionBlock)completionBlock
+- (RCTImageLoaderCancellationBlock)loadImageWithURLRequest:(NSURLRequest *)imageURLRequest
+                                                      size:(CGSize)size
+                                                     scale:(CGFloat)scale
+                                                   clipped:(BOOL)clipped
+                                                resizeMode:(RCTResizeMode)resizeMode
+                                             progressBlock:(RCTImageLoaderProgressBlock)progressBlock
+                                          partialLoadBlock:(RCTImageLoaderPartialLoadBlock)partialLoadBlock
+                                           completionBlock:(RCTImageLoaderCompletionBlock)completionBlock
 {
   RCTImageURLLoaderRequest *request = [self loadImageWithURLRequest:imageURLRequest
                                                                size:size
